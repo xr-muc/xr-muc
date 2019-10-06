@@ -51,6 +51,7 @@
 /* === GENERAL DEFINITIONS === */
 
 body {
+    onresize: "resize()";
     font-family: 'Crimson Text';
     font-size: 1.5rem;
 }
