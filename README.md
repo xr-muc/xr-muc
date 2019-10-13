@@ -6,6 +6,10 @@ This website was inspired by the [carbon clock](https://www.mcc-berlin.net/en/re
 It also shows a list of countries and their percentage share of the global CO2 emissions.  
 
 A jupyter notebook with data preprocessing using python is included.
+SPYDER is used that gives more flexibility and better GUI
+
+Machine learning will help in real time processing of various problems
+
 
 ### Sources
 [Original Carbon Clock](https://www.mcc-berlin.net/en/research/co2-budget.html)  
