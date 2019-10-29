@@ -14,6 +14,27 @@ var emissions = [
       "emission_budget_15": 72890272.82893673
   },
   {
+      "name": "Canada",
+      "emission_per_year": 572782600.0,
+      "emission_per_second": 18.162817097919838,
+      "emission_percentage_of_total": 1.558274212084652,
+      "emission_budget_15": 6544751690.755539
+  },
+  {
+      "name": "France",
+      "emission_per_year": 356300700.0,
+      "emission_per_second": 11.29822108066971,
+      "emission_percentage_of_total": 0.9693279658944074,
+      "emission_budget_15": 4071177456.7565107
+    },
+  {
+      "name": "United Kingdom",
+      "emission_per_year": 384706800.0,
+      "emission_per_second": 12.198972602739726,
+      "emission_percentage_of_total": 1.0466077105931777,
+      "emission_budget_15": 4395752384.491346
+  },
+  {
       "name": "world",
       "emission_per_year": 36757497208.0,
       "emission_per_second": 1165.5725903094876,
