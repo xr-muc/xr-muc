@@ -52,7 +52,7 @@
 
 body {
     font-family: 'Crimson Text';
-    font-size: 1.5rem;
+    font-size: 1.5rem;   
 }
 
 h1, h2, h3, h4, h5, h6, .shout {
@@ -174,5 +174,8 @@ a {
     top: 0; left: 0;
 }
 
+.chevron {
+  font-size: 1rem;
+}
 
 /* === THE INFO BLOCKS === */
