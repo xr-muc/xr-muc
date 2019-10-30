@@ -1540,7 +1540,7 @@ var emissions = [
     emission_budget_15: 118806619.91996418
   },
   {
-    name: "world",
+    name: "World",
     emission_per_year: 36757497208,
     emission_per_second: 1165.5725903094876,
     emission_percentage_of_total: 100,
