@@ -209,28 +209,44 @@
 				<div class="table-responsive">
 		            <table class="table">
 		                <thead>
-						    <tr>
-						        <th scope="col">
-                      Country
-                      <span id="total-budget-desc" class="chevron" onclick="orderCategory('name', 'desc')">&#9660;</span>
-                      <span id="total-budget-asc" class="chevron" onclick="orderCategory('name', 'asc')">&#9650;</span>
-                    </th>
-						        <th scope="col">
-                      Total Budget [tons] 
-                      <span id="total-budget-desc" class="chevron" onclick="orderCategory('budget', 'desc')">&#9660;</span>
-                      <span id="total-budget-asc" class="chevron" onclick="orderCategory('budget', 'asc')">&#9650;</span>
-                    </th>
-						        <th scope="col">
-                        % of World Budget
-                        <span id="total-budget-desc" class="chevron" onclick="orderCategory('budget', 'desc')">&#9660;</span>
-                        <span id="total-budget-asc" class="chevron" onclick="orderCategory('budget', 'asc')">&#9650;</span>
-                    </th>
-						        <th scope="col">
-                      Budget Left [tons]
-                      <span id="total-budget-desc" class="chevron" onclick="orderCategory('budget', 'desc')">&#9660;</span>
-                      <span id="total-budget-asc" class="chevron" onclick="orderCategory('budget', 'asc')">&#9650;</span>
-                    </th>
-						    </tr>
+                      <tr>
+                          <th scope="col" class="category-name-container">
+                            <div class="category-container">
+                                <span class="category-name">Country</span>
+                                <div class="chevron-container">
+                                    <span id="total-budget-desc" class="chevron" onclick="orderCategory('name', 'desc')">&#9660;</span>
+                                    <span id="total-budget-asc" class="chevron" onclick="orderCategory('name', 'asc')">&#9650;</span>
+                                </div>
+                            </div>
+                          </th>
+                          <th scope="col" class="category-name-container">
+                            <div class="category-container">
+                                <span class="category-name">Total Budget [tons]</span>
+                                <div class="chevron-container">
+                                    <span id="total-budget-desc" class="chevron" onclick="orderCategory('budget', 'desc')">&#9660;</span>
+                                    <span id="total-budget-asc" class="chevron" onclick="orderCategory('budget', 'asc')">&#9650;</span>
+                                </div>
+                            </div>
+                          </th>
+                          <th scope="col" class="category-name-container">
+                            <div class="category-container">
+                                <span class="category-name">% of World Budget</span>
+                                <div class="chevron-container">
+                                    <span id="total-budget-desc" class="chevron" onclick="orderCategory('budget', 'desc')">&#9660;</span>
+                                    <span id="total-budget-asc" class="chevron" onclick="orderCategory('budget', 'asc')">&#9650;</span>
+                                </div>
+                            </div>
+                          </th>
+                          <th scope="col" class="category-name-container">
+                            <div class="category-container">
+                                <span class="category-name">Budget Left [tons]</span>
+                                <div class="chevron-container">
+                                    <span id="total-budget-desc" class="chevron" onclick="orderCategory('budget', 'desc')">&#9660;</span>
+                                    <span id="total-budget-asc" class="chevron" onclick="orderCategory('budget', 'asc')">&#9650;</span>
+                                </div>
+                            </div>
+                          </th>
+                      </tr>
 		                </thead>
 		                <tbody id="country-table-body">
 		                    <!-- filled by the script -->
@@ -289,7 +305,14 @@
 
             var worldEmissions = emissions.find(function(entry) { return entry.name === 'World'});
 
-            $("#country-table-body").html("");
+            $("#country-table-body").html(
+              "<tr class='world-emissions-data'>" +
+                  "<td>World</td>" +
+                  "<td>" + numberFormatter(Math.round(worldEmissions["emission_budget_15"])) + "</td>" +
+                  "<td>100%</td>" +
+                  "<td>" + numberFormatter(Math.round(worldEmissions["emission_budget_15"] - (elapsed * worldEmissions["emission_per_second"]))) + "</td>" +
+              "</tr>"
+            );
 
             for (var country of emissionsData) {
                 // calculate time left
@@ -304,14 +327,17 @@
                 
 
                 // create table row
-                $("#country-table-body").append(
+                if(country.name !== 'World') {
+                  $("#country-table-body").append(
                     "<tr>" +
                         "<td>" + country.name + "</td>" +
                         "<td>" + numberFormatter(countryBudgetTotal) + "</td>" +
                         "<td>" + countryPercentageBudgetLeft + "%</td>" +
                         "<td>" + numberFormatter(countryBudgetLeft) + "</td>" +
                     "</tr>"
-                );
+                  );
+                }
+
             }
 
             setTimeout(() => updateCountries, 100000);

@@ -52,7 +52,7 @@
 
 body {
     font-family: 'Crimson Text';
-    font-size: 1.5rem;   
+    font-size: 1.5rem;
 }
 
 h1, h2, h3, h4, h5, h6, .shout {
@@ -172,6 +172,27 @@ a {
 	
     position: absolute;
     top: 0; left: 0;
+}
+
+/* === EMISSIONS TABLE === */
+
+.world-emissions-data {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+.category-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.chevron-container {
+  padding-left: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 3px;
 }
 
 .chevron {
