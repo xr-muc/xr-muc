@@ -340,7 +340,7 @@
 
             }
 
-            setTimeout(() => updateCountries, 100000);
+            setTimeout(updateCountries, 1000);
         }
 
         function sortByName(direction) {
@@ -405,7 +405,7 @@
             spanBudgetLeft.innerHTML = numberFormatter(Math.floor(worldBudgetLeft));
             spanEmissionsPerSecond.innerHTML = numberFormatter(Math.round(worldEmissions["emission_per_second"]));
 
-            setTimeout(updateCountdown, 100000);
+            setTimeout(updateCountdown, 1000);
         }
 
         /**
