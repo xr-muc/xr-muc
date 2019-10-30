@@ -303,7 +303,7 @@
             var now = moment();
             var elapsed = moment.duration(now.diff(start)).asSeconds();
 
-            var worldEmissions = emissions.find(function(entry) { return entry.name === 'World'});
+            var worldEmissions = emissionsData.find(function(entry) { return entry.name === 'World'});
 
             $("#country-table-body").html(
               "<tr class='world-emissions-data'>" +
@@ -339,8 +339,7 @@
                 }
 
             }
-
-            setTimeout(updateCountries, 1000);
+            setTimeout(function(){ updateCountries(emissionsData); }, 1000);
         }
 
         function sortByName(direction) {
