@@ -12,7 +12,7 @@ var start = moment("2018-01-01");
 var percentageBudgetLeft = 0;
 let timeoutId;
 let emissionsRawData = emissions;
-let sanitisedEmissionsData = emissionsRawData;
+let orderedEmissionsData = emissionsRawData;
 
 /**
  * Format a number to string format, with commas to separate groups of thousands.
@@ -29,7 +29,7 @@ function updateCountries(){
     var now = moment();
     var elapsed = moment.duration(now.diff(start)).asSeconds();
 
-    var worldEmissions = sanitisedEmissionsData.find(function(entry) { return entry.name === 'World'});
+    var worldEmissions = orderedEmissionsData.find(function(entry) { return entry.name === 'World'});
 
     $("#country-table-body").html(
       "<tr class='world-emissions-data'>" +
@@ -40,7 +40,7 @@ function updateCountries(){
       "</tr>"
     );
 
-    for (var country of sanitisedEmissionsData) {
+    for (var country of orderedEmissionsData) {
         // calculate time left
         if (!Number.isNaN(country["emission_budget_15"])) {
             var countryBudgetTotal = Math.round(country["emission_budget_15"]);
@@ -69,7 +69,7 @@ function updateCountries(){
 }
 
 function sortByName(direction) {
-  sanitisedEmissionsData = sanitisedEmissionsData.sort(function(curr, next) {
+  orderedEmissionsData = orderedEmissionsData.sort(function(curr, next) {
     if(direction === 'desc') {
       return next.name < curr.name ? 1 : -1;
     }
@@ -78,7 +78,7 @@ function sortByName(direction) {
 }
 
 function sortByBudget(direction) {
-  sanitisedEmissionsData = sanitisedEmissionsData.sort(function(curr, next) {
+  orderedEmissionsData = orderedEmissionsData.sort(function(curr, next) {
     return direction === 'desc'
       ? next['emission_budget_15'] - curr['emission_budget_15']
       : curr['emission_budget_15'] - next['emission_budget_15'];
@@ -98,11 +98,11 @@ function filterCountryData(inputText) {
   console.log('inputText', inputText);
   if (inputText) {
     const searchString = inputText.toLowerCase();
-    const worldData = sanitisedEmissionsData.find(entry => entry.name.toLowerCase() === 'world');
+    const worldData = orderedEmissionsData.find(entry => entry.name.toLowerCase() === 'world');
     filteredEmissionsData = emissionsRawData.filter(entry => entry && entry.name.toLowerCase().includes(searchString));
-    sanitisedEmissionsData = [worldData, ...filteredEmissionsData];
+    orderedEmissionsData = [worldData, ...filteredEmissionsData];
   } else {
-    sanitisedEmissionsData = emissionsRawData;
+    orderedEmissionsData = emissionsRawData;
   }
 
   updateCountries();
@@ -118,7 +118,7 @@ function clearCountryFilter() {
 function updateCountdown(){
     var now = moment();
     var elapsed = moment.duration(now.diff(start)).asSeconds();
-    var worldEmissions = sanitisedEmissionsData.find(function(entry) { return entry.name === 'World'});
+    var worldEmissions = orderedEmissionsData.find(function(entry) { return entry.name === 'World'});
 
     // calculate global timer
     var worldBudgetTotal = worldEmissions["emission_budget_15"];
