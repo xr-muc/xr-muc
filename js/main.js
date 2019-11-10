@@ -10,6 +10,7 @@ var spanEmissionsPerSecond = document.getElementById("emissions-per-seconds");
 
 var start = moment("2018-01-01");
 var percentageBudgetLeft = 0;
+let timeoutId;
 
 /**
  * Format a number to string format, with commas to separate groups of thousands.
@@ -22,6 +23,7 @@ function numberFormatter(numberToFormat) {
  * Update countries measures every second.
  */
 function updateCountries(emissionsData){
+    clearTimeout(timeoutId);
     var now = moment();
     var elapsed = moment.duration(now.diff(start)).asSeconds();
 
@@ -61,7 +63,7 @@ function updateCountries(emissionsData){
         }
 
     }
-    setTimeout(function(){ updateCountries(emissionsData); }, 1000);
+    timeoutId = setTimeout(function(){ updateCountries(emissionsData); }, 1000);
 }
 
 function sortByName(direction) {
@@ -87,6 +89,15 @@ function orderCategory(categoryName, direction) {
     : sortByBudget(direction);
 
   updateCountries(sortedEmissionsData)
+}
+
+function searchCountries(inputText) {
+  console.log('event', event);
+  console.log('inputText', inputText);
+  const searchString = inputText.toLowerCase();
+  const worldData = emissions.find(entry => entry.name.toLowerCase() === 'world');
+  const filteredEmissionsData = emissions.filter(entry => entry && entry.name.toLowerCase().includes(searchString));
+  updateCountries([ worldData, ...filteredEmissionsData]);
 }
 
 /**
