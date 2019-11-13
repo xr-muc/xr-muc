@@ -207,10 +207,10 @@
             <div class="container">
                 <h1 class="font-weight-bold pb-3">EMISSION BUDGETS PER COUNTRY</h1>
 				<div class="table-responsive">
-                <div>
-                  <input type="text" name="country-filter" id="country-filter" placeholder="Filter by country name" onkeyup="filterCountryData(value)">
-                  <button onclick="clearCountryFilter()">
-                    Clear
+                <div class="country-filter">
+                  <input type="text" name="country-filter" id="country-filter-input" placeholder="Filter by country name" onkeyup="filterCountryData(value)">
+                  <button class="clear-button" onclick="clearCountryFilter()" aria-label="clear country name filter">
+                      X
                   </button>
                 </div>
 		            <table class="table">

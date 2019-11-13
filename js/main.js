@@ -94,8 +94,6 @@ function orderCategory(categoryName, direction) {
 }
 
 function filterCountryData(inputText) {
-  console.log('event', event);
-  console.log('inputText', inputText);
   if (inputText) {
     const searchString = inputText.toLowerCase();
     const worldData = orderedEmissionsData.find(entry => entry.name.toLowerCase() === 'world');
@@ -109,7 +107,8 @@ function filterCountryData(inputText) {
 }
 
 function clearCountryFilter() {
-  document.getElementById('country-filter').value = '';
+  document.getElementById('country-filter-input').value = '';
+  filterCountryData();
 }
 
 /**
@@ -167,4 +166,4 @@ function resizeMeter(){
 // Start up everything
 updateCountdown();
 resizeMeter();
-updateCountries(emissionsRawData);
+updateCountries();
